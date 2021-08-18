@@ -1,9 +1,17 @@
+"""
+Copyright 2021 Charles McMarrow
+"""
+
+# built-in
 import argparse
+from typing import List, Generator, Optional, Tuple, Union
+
+# dual_tape
 import dual_tape as dt
-from . import error
 from . import assembler
+from . import error
+from .log import enable_log
 from . import vm
-from . import log
 
 
 def dual_tape() -> None:
@@ -40,8 +48,8 @@ def dual_tape() -> None:
         if args.version:
             print(f"v{dt.MAJOR}.{dt.MINOR}.{dt.MAINTENANCE}")
 
-        dual_tape_api(file=args.file,
-                      log=args.log)
+        for _ in dual_tape_api(file=args.file, log=args.log):
+            pass
     except error.DualTapeError as e:
         print(f"\nERROR: {e}", flush=True)
     except KeyboardInterrupt:
@@ -49,9 +57,19 @@ def dual_tape() -> None:
 
 
 def dual_tape_api(file: str,
-                  log: bool = False) -> None:
+                  inputs: Optional[Union[Tuple[str, ...], List[str]]] = None,
+                  sys_output: bool = True,
+                  catch_output: bool = False,
+                  log: bool = False) -> Generator[vm.VMState, None, None]:
     """
     info: API to dual_tape
-    :return:
+    :param: inputs: Optional[Union[Tuple[str, ...], List[str]]]
+    :param: sys_output: bool
+    :param: catch_output: bool
+    :param: log: bool
+    :return: Generator[vm.VMState, None, None]
     """
+    if log:
+        enable_log()
     entry_point, instructions, data = assembler.assembler(file=file)
+    return vm.vm(entry_point, instructions, data, inputs, sys_output, catch_output)

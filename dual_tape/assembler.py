@@ -2,8 +2,10 @@
 Copyright 2021 Charles McMarrow
 """
 
-
+# built-in
 from typing import Dict, Tuple
+
+# dual_tape
 from .error import DualTapeError
 from .vm import INSTRUCTIONS
 
