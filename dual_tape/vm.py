@@ -82,7 +82,7 @@ def next_instruction(vmstate: VMState) -> None:
     :return: None
     """
     vmstate.operations.append(vmstate.operations.pop(0))
-    log.log(vmstate.operations[0].__name__)
+    log.log(f"Next: {vmstate.operations[0].__name__}")
     vmstate.pc += 1
 
 
@@ -92,6 +92,7 @@ def execute(vmstate: VMState) -> None:
     :param vmstate: VMState
     :return: None
     """
+    log.log(f"EXECUTE: {vmstate.operations[0].__name__}!!!")
     vmstate.operations[0](vmstate)
 
 
@@ -335,7 +336,11 @@ def vm(entry_point: int,
                         write_dynamic_instruction])
     yield vm_state
     while not vm_state.halt:
-        log.log(f"PC: {vm_state.pc}, I: {_read_instruction(vm_state)}, M: {_read_memory(vm_state)}")
+        log.log("PC: {}, I: {}, M: {}, i: {}, i2: {}".format(vm_state.pc,
+                                                             _read_instruction(vm_state),
+                                                             _read_memory(vm_state),
+                                                             vm_state.item1,
+                                                             vm_state.item2))
         instruction = INSTRUCTIONS[_read_instruction(vm_state)]
         instruction(vm_state)
         yield vm_state

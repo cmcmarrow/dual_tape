@@ -10,8 +10,14 @@ from typing import List, Generator, Optional, Tuple, Union
 import dual_tape as dt
 from . import assembler
 from . import error
-from .log import enable_log
 from . import vm
+from .log import enable_log
+
+
+class DualTapeAPI(error.DualTapeError):
+    @classmethod
+    def hit_timeout(cls):
+        return cls("Hit timeout!")
 
 
 def dual_tape() -> None:
@@ -30,15 +36,19 @@ def dual_tape() -> None:
                             default=False,
                             action="store_true",
                             help="get author of dual_tape")
+        parser.add_argument("-l",
+                            "--log",
+                            default=False,
+                            action="store_true",
+                            help="enables debug log")
         parser.add_argument("-v",
                             "--version",
                             default=False,
                             action="store_true",
                             help="get version of dual_tape")
-        parser.add_argument("-l",
-                            "--log",
-                            default=False,
-                            action="store_true",
+        parser.add_argument("--timeout",
+                            default=-1,
+                            type=int,
                             help="enables debug log")
         args = parser.parse_args()
 
@@ -48,8 +58,10 @@ def dual_tape() -> None:
         if args.version:
             print(f"v{dt.MAJOR}.{dt.MINOR}.{dt.MAINTENANCE}")
 
-        for _ in dual_tape_api(file=args.file, log=args.log):
-            pass
+        for at, _ in enumerate(dual_tape_api(file=args.file, log=args.log)):
+            if at == args.timeout:
+                raise DualTapeAPI.hit_timeout()
+
     except error.DualTapeError as e:
         print(f"\nERROR: {e}", flush=True)
     except KeyboardInterrupt:
