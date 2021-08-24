@@ -1,20 +1,11 @@
 ##################
 dual_tape - v1.0.0
 ##################
-WIP
+
 *****
 About
 *****
 This python module "dual_tape" is an `Esolang <https://esolangs.org/wiki/Main_Page>`_.
-
-***********
-Hello World
-***********
-``hello_world.brs``
-
-.. code-block:: text
-
-   TODO
 
 *******************
 Python Installation
@@ -35,13 +26,14 @@ Console Interface
    dual_tape
 
    positional arguments:
-     file           path to dual_tape
+     file           path to dual_tape script
 
    optional arguments:
      -h, --help     show this help message and exit
      -a, --author   get author of dual_tape
      -v, --version  get version of dual_tape
      -l, --log      enables debug log
+     --timeout TIMEOUT  max number of instructions that can run
 
 *************
 Documentation
@@ -62,3 +54,12 @@ Build Executable
 API
 ***
 ``dual_tape_api.py``
+
+.. code-block:: text
+
+   info: API to dual_tape
+   :param: inputs: Optional[Union[Tuple[str, ...], List[str]]]
+   :param: sys_output: bool
+   :param: catch_output: bool
+   :param: log: bool
+   :return: Generator[vm.VMState, None, None]

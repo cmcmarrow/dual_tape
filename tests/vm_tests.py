@@ -46,17 +46,33 @@ class VMTests(unittest.TestCase):
         self.assertEqual(stream[3], "122")
         self.assertEqual(stream[4], "0")
 
-    def test_onic(self):
-        pass
-
     def test_onin(self):
-        pass
+        vm_state = _runner("onin.dt", inputs=("666", "&^*(%(^*", "-404"))
+        outputs = vm_state.output_stream
+        self.assertEqual(len(outputs), 3)
+        self.assertEqual(outputs[0], "666")
+        self.assertEqual(outputs[1], "0")
+        self.assertEqual(outputs[2], "-404")
+
+    def test_ocic(self):
+        vm_state = _runner("ocic.dt", inputs=("cd", "", "a"))
+        outputs = vm_state.output_stream
+        self.assertEqual(len(outputs), 3)
+        self.assertEqual(outputs[0], "c")
+        self.assertEqual(outputs[1], "\0")
+        self.assertEqual(outputs[2], "a")
 
     def test_rona(self):
-        pass
+        vm_state = _runner("rona.dt")
+        outputs = vm_state.output_stream
+        self.assertEqual(len(outputs), 1)
+        self.assertEqual(outputs[0], "15")
 
     def test_rons(self):
-        pass
+        vm_state = _runner("rons.dt")
+        outputs = vm_state.output_stream
+        self.assertEqual(len(outputs), 1)
+        self.assertEqual(outputs[0], "31")
 
     def test_rwoc(self):
         vm_state = _runner("rwoc.dt")
