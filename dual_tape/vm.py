@@ -173,7 +173,7 @@ def subtract(vmstate: VMState) -> None:
     :param vmstate: VMState
     :return: None
     """
-    vmstate.item1 = vmstate.item2 + vmstate.item1
+    vmstate.item1 = vmstate.item2 - vmstate.item1
     vmstate.pc += 1
 
 

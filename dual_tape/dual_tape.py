@@ -30,7 +30,7 @@ def dual_tape() -> None:
         parser.add_argument("file",
                             type=str,
                             action="store",
-                            help="path to dual_tape")
+                            help="path to dual_tape script")
         parser.add_argument("-a",
                             "--author",
                             default=False,
@@ -49,7 +49,7 @@ def dual_tape() -> None:
         parser.add_argument("--timeout",
                             default=-1,
                             type=int,
-                            help="enables debug log")
+                            help="max number of instructions that can run")
         args = parser.parse_args()
 
         if args.author:
