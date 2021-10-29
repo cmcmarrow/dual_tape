@@ -1,0 +1,595 @@
+{{Lowercase}}
+{{WIP}}
+'''dual_tape''' is a "two" instruction tape machine. Every cell holds an instruction and a number.
+
+== About ==
+{| class="wikitable"
+!About
+|-
+| Author
+| Charles McMarrow
+|-
+| User
+| [[User:Ch44d]]
+|-
+| Conceived
+| 8/18/21
+|-
+| Birthday
+| SOON
+|}
+
+{| class="wikitable"
+!Official Interpreter
+|-
+| '''pip install dual_tape'''
+|-
+| https://https://github.com/cmcmarrow/dual_tape
+|}
+
+== Instructions ==
+{| class="wikitable"
+!Name
+!Instruction
+!Description
+|-
+| style="vertical-align: top"| <code><nowiki>Next Rule</nowiki></code>
+| style="vertical-align: top"| <code><span style="color:red"><nowiki>n</nowiki></span></code>
+| style="vertical-align: top"| Incremented to the next rule and incremented to the next instruction.
+|-
+| style="vertical-align: top"| <code><nowiki>Execute</nowiki></code>
+| style="vertical-align: top"| <code><span style="color:red"><nowiki>x</nowiki></span></code>
+| style="vertical-align: top"| Execute the current rule.
+|}
+
+== Rules ==
+{| class="wikitable"
+!Name
+!Description
+|-
+| style="vertical-align: top"| <code><nowiki>Halt</nowiki></code>
+| style="vertical-align: top"|
+|-
+| style="vertical-align: top"| <code><nowiki>Out Number</nowiki></code>
+| style="vertical-align: top"|
+|-
+| style="vertical-align: top"| <code><nowiki>Out Character</nowiki></code>
+| style="vertical-align: top"|
+|-
+| style="vertical-align: top"| <code><nowiki>In Number</nowiki></code>
+| style="vertical-align: top"|
+|-
+| style="vertical-align: top"| <code><nowiki>In Character</nowiki></code>
+| style="vertical-align: top"|
+|-
+| style="vertical-align: top"| <code><nowiki>Add</nowiki></code>
+| style="vertical-align: top"|
+|-
+| style="vertical-align: top"| <code><nowiki>Subtract</nowiki></code>
+| style="vertical-align: top"|
+|-
+| style="vertical-align: top"| <code><nowiki>Jump</nowiki></code>
+| style="vertical-align: top"|
+|-
+| style="vertical-align: top"| <code><nowiki>Jump Dynamic</nowiki></code>
+| style="vertical-align: top"|
+|-
+| style="vertical-align: top"| <code><nowiki>Jump Zero</nowiki></code>
+| style="vertical-align: top"|
+|-
+| style="vertical-align: top"| <code><nowiki>Jump Greater</nowiki></code>
+| style="vertical-align: top"|
+|-
+| style="vertical-align: top"| <code><nowiki>Read</nowiki></code>
+| style="vertical-align: top"|
+|-
+| style="vertical-align: top"| <code><nowiki>Read Dynamic</nowiki></code>
+| style="vertical-align: top"|
+|-
+| style="vertical-align: top"| <code><nowiki>Read Dynamic Instruction</nowiki></code>
+| style="vertical-align: top"|
+|-
+| style="vertical-align: top"| <code><nowiki>Write</nowiki></code>
+| style="vertical-align: top"|
+|-
+| style="vertical-align: top"| <code><nowiki>Write Dynamic</nowiki></code>
+| style="vertical-align: top"|
+|-
+| style="vertical-align: top"| <code><nowiki>Write Dynamic Instruction</nowiki></code>
+| style="vertical-align: top"|
+|}
+
+== Syntax ==
+{| class="wikitable"
+!Syntax
+|-
+| <nowiki><CODE> ::= {(([LABEL] INSTRUCTION [LABEL|NUMBER|CHARACTER|COMMENT] [COMMENT]) | COMMENT | "") NEWLINE}</nowiki>
+|-
+| <nowiki><LABEL> ::= "@" {Any UTF-8 Character excluding white space}</nowiki>
+|-
+| <nowiki><INSTRUCTION> ::= "n" | "x"</nowiki>
+|-
+| <nowiki><COMMENT> ::= "#" {Any UTF-8 Character excluding NEWLINE}</nowiki>
+|-
+| <nowiki><NEWLINE> ::= "\n"</nowiki>
+|-
+| <nowiki><CHARACTER> ::= "c" (A single normal UTF-8 Character)</nowiki>
+|-
+| <nowiki><NUMBER> ::= (A int number)</nowiki>
+|}
+
+== Sister Language ==
+[[dual_tape_ez]]
+
+== Hello World ==
+ @ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x cH
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x ce
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x cl
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x cl
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x co
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x 32
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x cW
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x co
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x cr
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x cl
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x cd
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x c!
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x 10
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
+
+[[Category:Languages]] [[Category:Implemented]]
