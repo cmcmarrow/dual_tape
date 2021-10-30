@@ -107,12 +107,3 @@ class VMTests(unittest.TestCase):
     def test_rgz2(self):
         vm_state = _runner("rjg2.dt")
         self.assertEqual(len(vm_state.output_stream), 0)
-
-    def test_ronrd(self):
-        pass
-
-    def test_ronwd(self):
-        pass
-
-    def test_rrdiwdi(self):
-        pass
