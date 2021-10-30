@@ -49,7 +49,8 @@ setup(
                  "Operating System :: POSIX :: Linux",
                  "Operating System :: MacOS :: MacOS X",
                  "Programming Language :: Python :: 3.8",
-                 "Programming Language :: Python :: 3.9"],
+                 "Programming Language :: Python :: 3.9",
+                 "Programming Language :: Python :: 3.10"],
 
     entry_points={"console_scripts": ["dual_tape = dual_tape.dual_tape:dual_tape"]}
 )
