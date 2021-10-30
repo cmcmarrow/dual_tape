@@ -95,7 +95,7 @@
 | style="vertical-align: top"| value from memory address in item_1 = item_2
 |-
 | style="vertical-align: top"| <code><nowiki>Write Dynamic Instruction</nowiki></code>
-| style="vertical-align: top"| value from memory instruction address in item_1 = item_2
+| style="vertical-align: top"| value from memory instruction address in item_1 = item_2 if item_2 is a valid instruction
 |}
 
 == Registers ==
