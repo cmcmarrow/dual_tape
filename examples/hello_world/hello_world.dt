@@ -1,624 +1,469 @@
-{{Lowercase}}
-'''dual_tape''' is a "two" instruction tape machine. Every cell holds an instruction and a number.
-
-== About ==
-{| class="wikitable"
-!About
-|-
-| Author
-| Charles McMarrow
-|-
-| User
-| [[User:Ch44d]]
-|-
-| Conceived
-| 8/18/2021
-|-
-| Birthday
-| 10/19/2021
-|}
-
-{| class="wikitable"
-!Official Interpreter
-|-
-| '''pip install dual_tape'''
-|-
-| https://https://github.com/cmcmarrow/dual_tape
-|}
-
-== Instructions ==
-{| class="wikitable"
-!Name
-!Instruction
-!Description
-|-
-| style="vertical-align: top"| <code><nowiki>Next</nowiki></code>
-| style="vertical-align: top"| <code><span style="color:red"><nowiki>n</nowiki></span></code>
-| style="vertical-align: top"| Incremented to the next rule and incremented to the next instruction.
-|-
-| style="vertical-align: top"| <code><nowiki>Execute</nowiki></code>
-| style="vertical-align: top"| <code><span style="color:red"><nowiki>x</nowiki></span></code>
-| style="vertical-align: top"| Execute the current rule.
-|}
-
-== Rules ==
-{| class="wikitable"
-!Name
-!Description
-|-
-| style="vertical-align: top"| <code><nowiki>Halt</nowiki></code>
-| style="vertical-align: top"| Stop the program.
-|-
-| style="vertical-align: top"| <code><nowiki>Out Number</nowiki></code>
-| style="vertical-align: top"| Outputs the number from item_1.
-|-
-| style="vertical-align: top"| <code><nowiki>Out Character</nowiki></code>
-| style="vertical-align: top"| Outputs the number as a UTF-8 character from item_1.
-|-
-| style="vertical-align: top"| <code><nowiki>In Number</nowiki></code>
-| style="vertical-align: top"| Read number from console into item_1. Falls back to 0 if error.
-|-
-| style="vertical-align: top"| <code><nowiki>In Character</nowiki></code>
-| style="vertical-align: top"| Read UTF-8 character from console into item_1. Falls back to "\0" if error.
-|-
-| style="vertical-align: top"| <code><nowiki>Add</nowiki></code>
-| style="vertical-align: top"| item_1 = item_2 + item_1
-|-
-| style="vertical-align: top"| <code><nowiki>Subtract</nowiki></code>
-| style="vertical-align: top"| item_1 = item_2 - item_1
-|-
-| style="vertical-align: top"| <code><nowiki>Jump</nowiki></code>
-| style="vertical-align: top"| pc = current value in memory
-|-
-| style="vertical-align: top"| <code><nowiki>Jump Dynamic</nowiki></code>
-| style="vertical-align: top"| pc = value from memory address in item_1
-|-
-| style="vertical-align: top"| <code><nowiki>Jump Zero</nowiki></code>
-| style="vertical-align: top"| pc = item_1 if item_2 == 0
-|-
-| style="vertical-align: top"| <code><nowiki>Jump Greater</nowiki></code>
-| style="vertical-align: top"| pc = item_1 if item_2 >= 0
-|-
-| style="vertical-align: top"| <code><nowiki>Read</nowiki></code>
-| style="vertical-align: top"| item_2 = item_1; item_1 = current value in memory
-|-
-| style="vertical-align: top"| <code><nowiki>Read Dynamic</nowiki></code>
-| style="vertical-align: top"| item_2 = item_1; item_1 = value from memory address in item_1
-|-
-| style="vertical-align: top"| <code><nowiki>Read Dynamic Instruction</nowiki></code>
-| style="vertical-align: top"| item_2 = item_1; item_1 = value from memory instruction address in item_1
-|-
-| style="vertical-align: top"| <code><nowiki>Write</nowiki></code>
-| style="vertical-align: top"| current value in memory = item_1
-|-
-| style="vertical-align: top"| <code><nowiki>Write Dynamic</nowiki></code>
-| style="vertical-align: top"| value from memory address in item_1 = item_2
-|-
-| style="vertical-align: top"| <code><nowiki>Write Dynamic Instruction</nowiki></code>
-| style="vertical-align: top"| value from memory instruction address in item_1 = item_2
-|}
-
-== Registers ==
-{| class="wikitable"
-! Register
-! Description
-|-
-| style="vertical-align: top"| <code><span style="color:red"><nowiki>pc</nowiki></span></code>
-| Hold the current program counter. At program start pc is set to the label "@". If Label "@" is not present an error will be thrown.
-|-
-| style="vertical-align: top"| <code><span style="color:red"><nowiki>item_1</nowiki></span></code>
-| Set to 0 at program start.
-|-
-| style="vertical-align: top"| <code><span style="color:red"><nowiki>item_2</nowiki></span></code>
-| Set to 0 at program start.
-|-
-| style="vertical-align: top"| <code><span style="color:red"><nowiki>rule</nowiki></span></code>
-| Set to Halt at program start. The Next instruction uses this register to cycle threw all the rules in the ordered listed.
-|}
-
-== Memory ==
-A single memory cells holds two items. The instruction and data. The default instruction value is "n" and the default data value is 0. Memory range is negative infinity to infinity.
-
-== Syntax ==
-{| class="wikitable"
-!Syntax
-|-
-| <nowiki><CODE> ::= {(([LABEL] INSTRUCTION [LABEL | NUMBER | CHARACTER | COMMENT] [COMMENT]) | COMMENT | "") NEWLINE}</nowiki>
-|-
-| <nowiki><LABEL> ::= "@" {Any UTF-8 Character excluding white space}</nowiki>
-|-
-| <nowiki><INSTRUCTION> ::= "n" | "x"</nowiki>
-|-
-| <nowiki><COMMENT> ::= "#" {Any UTF-8 Character excluding NEWLINE}</nowiki>
-|-
-| <nowiki><NEWLINE> ::= "\n"</nowiki>
-|-
-| <nowiki><CHARACTER> ::= "c" (Normal UTF-8 Character)</nowiki>
-|-
-| <nowiki><NUMBER> ::= A int number</nowiki>
-|}
-
-== Sister Language ==
-[[dual_tape_ez]]
-
-== Programs ==
-=== [[truth-machine]] ===
-
-=== Hello World ===
- @ n # Hello World
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- x cH
- n
- n
- n
- n
- n
- n
- n
- n
- x
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- x ce
- n
- n
- n
- n
- n
- n
- n
- n
- x
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- x cl
- n
- n
- n
- n
- n
- n
- n
- n
- x
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- x cl
- n
- n
- n
- n
- n
- n
- n
- n
- x
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- x co
- n
- n
- n
- n
- n
- n
- n
- n
- x
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- x 32
- n
- n
- n
- n
- n
- n
- n
- n
- x
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- x cW
- n
- n
- n
- n
- n
- n
- n
- n
- x
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- x co
- n
- n
- n
- n
- n
- n
- n
- n
- x
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- x cr
- n
- n
- n
- n
- n
- n
- n
- n
- x
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- x cl
- n
- n
- n
- n
- n
- n
- n
- n
- x
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- x cd
- n
- n
- n
- n
- n
- n
- n
- n
- x
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- x c!
- n
- n
- n
- n
- n
- n
- n
- n
- x
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- x 10
- n
- n
- n
- n
- n
- n
- n
- n
- x
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- n
- x
-
-[[Category:Implemented]]
-[[Category:Languages]]
-[[Category:Turing complete]]
-[[Category:Cell-based]]
-[[Category:Self-modifying]]
-[[Category:Low-level]]
-[[Category:2021]]
+@ n # Hello World
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+x cH
+n
+n
+n
+n
+n
+n
+n
+n
+x
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+x ce
+n
+n
+n
+n
+n
+n
+n
+n
+x
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+x cl
+n
+n
+n
+n
+n
+n
+n
+n
+x
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+x cl
+n
+n
+n
+n
+n
+n
+n
+n
+x
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+x co
+n
+n
+n
+n
+n
+n
+n
+n
+x
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+x 32
+n
+n
+n
+n
+n
+n
+n
+n
+x
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+x cW
+n
+n
+n
+n
+n
+n
+n
+n
+x
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+x co
+n
+n
+n
+n
+n
+n
+n
+n
+x
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+x cr
+n
+n
+n
+n
+n
+n
+n
+n
+x
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+x cl
+n
+n
+n
+n
+n
+n
+n
+n
+x
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+x cd
+n
+n
+n
+n
+n
+n
+n
+n
+x
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+x c!
+n
+n
+n
+n
+n
+n
+n
+n
+x
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+x 10
+n
+n
+n
+n
+n
+n
+n
+n
+x
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+x

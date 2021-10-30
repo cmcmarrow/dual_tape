@@ -143,6 +143,98 @@ A single memory cells holds two items. The instruction and data. The default ins
 
 == Programs ==
 === [[truth-machine]] ===
+ @ n # Truth Machine
+ n
+ n
+ x
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x @zero
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
+ n
+ n
+ x 1
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ @one_loop n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
+ n
+ n
+ n
+ n
+ n
+ n
+ x @one_loop
+ @zero n
+ n
+ x 0
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ n
+ x
 
 === Hello World ===
  @ n # Hello World
