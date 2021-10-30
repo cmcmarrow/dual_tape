@@ -23,7 +23,7 @@
 |-
 | '''pip install dual_tape'''
 |-
-| https://https://github.com/cmcmarrow/dual_tape
+| https://github.com/cmcmarrow/dual_tape
 |}
 
 == Instructions ==
