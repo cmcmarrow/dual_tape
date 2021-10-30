@@ -1,5 +1,5 @@
 {{Lowercase}}
-'''dual_tape''' is a "two" instruction tape machine. Every cell holds an instruction and a number.
+'''dual tape''' is a "two" instruction tape machine. Every cell holds an instruction and a number.
 
 == About ==
 {| class="wikitable"
