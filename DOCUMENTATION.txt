@@ -89,7 +89,7 @@
 | style="vertical-align: top"| item_2 = item_1; item_1 = value from memory instruction address in item_1
 |-
 | style="vertical-align: top"| <code><nowiki>Write</nowiki></code>
-| style="vertical-align: top"| current value in memory = item_1
+| style="vertical-align: top"| current location in memory = item_1
 |-
 | style="vertical-align: top"| <code><nowiki>Write Dynamic</nowiki></code>
 | style="vertical-align: top"| value from memory address in item_1 = item_2
