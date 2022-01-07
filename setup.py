@@ -34,7 +34,7 @@ setup(
     author_email="Charles.McMarrow.4@gmail.com",
     url="https://github.com/cmcmarrow/dual_tape",
     license="Apache Software License 2.0",
-    description="3D, CISC Architecture and Esolang",
+    description="Tape Esolang",
     long_description=long_description,
     long_description_content_type="text/x-rst",
     packages=["dual_tape"],
